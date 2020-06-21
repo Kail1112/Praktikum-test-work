@@ -1,5 +1,10 @@
 const handleEscClose = (e, callback = {close: () => null}) => {
   e.preventDefault();
+  /**
+   * Нужно исправить
+   * Не должно быть "магических чисел", нужно использовать константы
+   * для улучшения читабельности кода
+   */
   e.which === 27 && callback.close()
 }
 
@@ -24,6 +29,10 @@ export default class Popup {
     if (this._popup !== undefined) {
       if (!this._popup.classList.contains('popup_is-opened')) {
         this._popup.classList.add('popup_is-opened')
+      /**
+       * Нужно исправить
+       * Адрес обработчика нигде не сохраняется, удалить такого слушателя при закрытии попапа не получится
+       */
         document.addEventListener('keyup', (e) => this._handleEscClose(e, this))
       }
     } else throw new Error('Нету селектора попапа')
@@ -32,6 +41,11 @@ export default class Popup {
   close () {
     if (this._popup !== undefined) {
       this._popup.classList.contains('popup_is-opened') && this._popup.classList.remove('popup_is-opened')
+      /**
+       * Нужно исправить
+       * Удаляется другой коллбэк, который существует только в контексте document.removeEventListener
+       * Вместо необходимого
+       */
       document.removeEventListener('keyup', (e) => this._handleEscClose(e, this));
       this._callback(this._popup)
     } else throw new Error('Нету селектора попапа')

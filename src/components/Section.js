@@ -3,6 +3,11 @@ export default class Section {
     const {items, renderer} = config
     this._render = renderer
     this._items = items
+    /**
+     * Нужно исправить
+     * В задании не указано, что элементом по-умолчанию должен быть корень документа
+     * https://www.notion.so/8-5-48c79edf7848471db4246525602502f0#f48b32c4e3c145d1a79b02c802c1d6c3
+     */
     this._selector = selector || document.documentElement
     this.render()
   }

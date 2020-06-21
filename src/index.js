@@ -4,6 +4,11 @@ import {UserInfo, PopupWithForm, PopupWithImage, Card, FormValidator} from './co
 /*
 * Редактирование пользователя
 * */
+/**
+ * Нужно исправить
+ * По заданию в экземпляры классов должны передаваться селекторы, а не элементы
+ * https://developer.mozilla.org/ru/docs/Web/API/Document/querySelector
+ */
 const selectorUserName = document.querySelector('.profile__title')
 const selectorUserInfo = document.querySelector('.profile__description')
 const editUserInfoBtn = document.querySelector('.profile__edit-button')
@@ -19,7 +24,6 @@ const onSubmitUserPopup = (info) => {
 
 const userPopup = new PopupWithForm('.popup_type_edit', onSubmitUserPopup)
 editUserInfoBtn.addEventListener('click', () => {
-  const {name, info} = user.getUserInfo()
   userPopup.setValueInput([
     {selector: '#owner-name', value: name},
     {selector: '#owner-description', value: info}
@@ -72,6 +76,12 @@ const renderCard = (data, wrap) => {
   wrap.prepend(card.getView());
 };
 
+/**
+ * Нужно исправить
+ * Для работы с коллекцией карточек был реализован класс Section
+ * https://www.notion.so/8-5-48c79edf7848471db4246525602502f0#f48b32c4e3c145d1a79b02c802c1d6c3
+ * Следует использовать его
+ */
 // Инициализация
 initialCards.forEach((data) => {
   renderCard(data, placesWrap)
@@ -81,6 +91,10 @@ const onSubmitPlacePopup = (info) => {
   const [place, url] = info
   const {value: placeValue} = place
   const {name: urlName, value: urlValue} = url
+  /**
+   * Нужно исправить
+   * Нет прямой перезаписи пременной, нужно использовать const
+   */
   let result = {}
   result['name'] = placeValue
   result[urlName] = urlValue
