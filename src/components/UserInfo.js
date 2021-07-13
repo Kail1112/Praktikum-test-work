@@ -1,3 +1,7 @@
+/**
+ * Можно лучше
+ * название метода не соответсвует его предназначению
+ */
 const catchError = (el1, el2) => {
   if (el1 !== undefined && el2 !== undefined) {
     return true
@@ -21,6 +25,13 @@ export default class UserInfo {
   }
 
   getUserInfo () {
+    /**
+     * Можно лучше
+     * Лишние перепроверки свойств класса
+     * Корректность переданных элементов проверяется в контсрукторе,
+     * при правильном использовании класса, не должно возникать такой ситуации,
+     * когда this.#elementName, this.#elementInfo будут пустыми
+     */
     if (catchError(this.#elementName, this.#elementInfo)) {
       return {name: this.#elementName.innerText, info: this.#elementInfo.innerText}
     }
@@ -29,6 +40,13 @@ export default class UserInfo {
   setUserInfo (name = '', info = '') {
     this.#elementName.innerText = name
     this.#elementInfo.innerText = info
+    /**
+     * Можно лучше
+     * Лишние перепроверки свойств класса
+     * Корректность переданных элементов проверяется в контсрукторе,
+     * при правильном использовании класса, не должно возникать такой ситуации,
+     * когда this.#elementName, this.#elementInfo будут пустыми
+     */
     if (catchError(this.#elementName, this.#elementInfo)) {
     }
   }
